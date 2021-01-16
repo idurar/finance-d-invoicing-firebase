@@ -1,27 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web site created using create-snowpack-app" />
-    <link rel="stylesheet" type="text/css" href="/index.css" />
-    <title>Snowpack App</title>
-  </head>
-  <body>
-    <img id="img" src="/logo.svg" />
-    <canvas id="canvas"></canvas>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script type="module" src="/dist/index.js"></script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <link rel='icon' href='/favicon.ico' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta name='description' content='Web site created using create-snowpack-app' />
+  <link rel='stylesheet' type='text/css' href='/index.css' />
+  <title>Finance D - Facturation</title>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<script type='module' src='/dist/index.js'></script>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<div id='whenSignedOut' class='flex-row flex-center'>
+  <button id='signInBtn' style='display: none;'>Se connecter</button>
+</div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<div id='whenSignedIn' style='display: none;'>
+  <section id='app-menu__top' class='flex-row flex-space-between'>
+    <div class='flex-row'>
+      <div class='my-preferences'>
+        <button id='my-preferences-btn'>Mes préférences</button>
+      </div>
+      <div class='my-invoices'>
+        <button id='my-invoices-btn'>Mes factures</button>
+      </div>
+    </div>
+    <div class='my-account flex-row flex-center'>
+      <p>Connecté en tant que <span id='authUserEmail'></span></p>
+      <button id='signOutBtn' style='display: none;'>Se déconnecter</button>
+    </div>
+  </section>
+
+  <section id='invoice' class='flex-col flex-center'>
+    <div class='invoice-top flex-row'>
+      <div class='invoice-client-name'>
+        <label for='client-name'>Nom du client:</label>
+        <input type='text' id='client-name' autocomplete='off' spellcheck='false'>
+      </div>
+      <div class='invoice-number'>
+        <label for='invoice-number'>Numéro:</label>
+        <input type='text' id='invoice-number' autocomplete='off' spellcheck='false'>
+      </div>
+      <div class='invoice-date'>
+        <label for='invoice-date'>Date:</label>
+        <input type='text' id='invoice-date' autocomplete='off' spellcheck='false'>
+      </div>
+    </div>
+
+    <div class='invoice-transactions flex-row'>Transactions:</div>
+
+    <div class='invoice-bottom flex-row'>
+      <div class='invoice-sums'>Sommes:</div>
+      <div class='invoice-payments'>Paiements:</div>
+    </div>
+  </section>
+
+  <section id='app-menu__bottom' class='flex-row flex-center'>
+    <div class='save-btn'>
+      <button id='save-btn'>ENREGISTRER</button>
+    </div>
+  </section>
+</div>
+
+</body>
 </html>
