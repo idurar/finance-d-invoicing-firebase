@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-import { clientName } from './client-name';
+import { clientName } from "./client-name";
 
 export const invoice = {
   clientName,

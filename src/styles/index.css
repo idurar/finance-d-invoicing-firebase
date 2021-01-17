@@ -3,10 +3,17 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  justify-content: space-between;
 }
 
 section:not(:first-of-type) {
   margin-top: 50px;
+}
+
+footer {
+  /*width: 100%;*/
+  padding: .67em;
 }
 
 button {
@@ -33,6 +40,10 @@ button {
 
 .flex-space-between {
   justify-content: space-between;
+}
+
+.no-select {
+  user-select: none;
 }
 
 #app-menu__top {
