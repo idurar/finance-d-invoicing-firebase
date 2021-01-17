@@ -3,17 +3,52 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+
   height: 100vh;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr 0.1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer"
+}
+
+header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 70px;
+  grid-template-areas: "left center right";
+}
+
+.header-left {
+  grid-area: left;
+  justify-self: flex-start;
+}
+
+.header-center {
+  grid-area: center;
+}
+
+.header-right {
+  grid-area: right;
+  justify-self: flex-end;
+}
+
+main {
+  grid-area: main;
+  height: 100%;
+}
+
+footer {
+  grid-area: footer;
+  /*width: 100%;*/
+  padding: .67em;
 }
 
 section:not(:first-of-type) {
   margin-top: 50px;
-}
-
-footer {
-  /*width: 100%;*/
-  padding: .67em;
 }
 
 button {
@@ -36,24 +71,33 @@ button {
 .flex-center {
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .flex-space-between {
   justify-content: space-between;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .no-select {
   user-select: none;
 }
 
-#app-menu__top {
-  background-color: #039be5;
+.full-width {
+  width: 100%;
+}
+
+.text-no-wrap {
+  white-space: nowrap;
 }
 
 #invoice {
   background-color: #f0f0f0;
 }
 
-#app-menu__bottom {
+#appMenuBottom {
   background-color: #ffa100;
 }
