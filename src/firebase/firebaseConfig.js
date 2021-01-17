@@ -1,11 +1,12 @@
 'use strict';
 
+console.time('firebaseConfig');
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { firebaseAuthService } from './firebaseAuthService';
 
-let auth, authProviders, db;
+let auth, authProviders, db, dbTimestamp;
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC7fmrGkUadXASa7r256YeE-XQyBAmZ7oo',
@@ -16,20 +17,22 @@ const firebaseConfig = {
   appId: '1:319602501837:web:fa19503ea8b37e8ada6184',
 };
 
+function firebaseInit() {
+  console.time('onloadFirebaseInit');
 
-function initializeFirebaseServices() {
+  //must init firebase before accessing authentication and firestore
   firebase.initializeApp(firebaseConfig);
 
-  // After firebaseConfig has been init, define exports
+  // define exports
   auth = firebase.auth();
-  authProviders = {
-    google: new firebase.auth.GoogleAuthProvider(),
-  };
-
+  authProviders = { google: new firebase.auth.GoogleAuthProvider() };
   db = firebase.firestore();
+  dbTimestamp = firebase.firestore.FieldValue.serverTimestamp;
 
-  firebaseAuthService();
+  console.timeEnd('onloadFirebaseInit');
 }
 
 
-export { initializeFirebaseServices, auth, authProviders, db };
+export { firebaseInit, auth, authProviders, db, dbTimestamp };
+
+console.timeEnd('firebaseConfig');

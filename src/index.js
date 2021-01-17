@@ -1,11 +1,11 @@
 'use strict';
 
-import { initializeFirebaseServices } from './firebase/initializeFirebaseServices';
+import { firebaseInit } from './firebase/firebaseConfig';
+import { registerAuthStateListener } from './firebase/firebaseAuthService';
 
 
 window.onload = () => {
-
-  initializeFirebaseServices();
-
+  firebaseInit();
+  registerAuthStateListener();
 
 };

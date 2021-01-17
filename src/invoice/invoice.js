@@ -10,7 +10,7 @@ export const invoice = {
     console.log(name);
   },
 
-  registerEvents() {
+  registerEventListeners() {
     clientName.registerEvents();
   },
 };
