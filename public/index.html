@@ -88,17 +88,18 @@
   </div>
 
   <div id='whenSignedIn' style='display: none;'>
-    <section id='invoice' class='flex-col flex-center'>
+    <section id='invoice' class='flex-col'>
       <div class='invoice-top flex-row'>
-        <div class='invoice-client-name'>
-          <label for='client-name'>Nom du client:</label>
-          <input type='text' id='client-name' autocomplete='off' spellcheck='false'>
+        <div class='invoice-client-name flex-col text-align-left input-container'>
+          <label for='contactNameInput'>Nom du client:</label>
+          <input type='text' id='contactNameInput' autocomplete='off' spellcheck='false'
+          placeholder='Qui recevra cette facture?'>
         </div>
-        <div class='invoice-number'>
+        <div class='invoice-number flex-col text-align-left input-container'>
           <label for='invoice-number'>Numéro:</label>
           <input type='text' id='invoice-number' autocomplete='off' spellcheck='false'>
         </div>
-        <div class='invoice-date'>
+        <div class='invoice-date flex-col text-align-left input-container'>
           <label for='invoice-date'>Date:</label>
           <input type='text' id='invoice-date' autocomplete='off' spellcheck='false'>
         </div>

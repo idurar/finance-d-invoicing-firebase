@@ -2,22 +2,51 @@
 
 import { authUser } from './firebaseAuthService';
 import { db, serverTimestamp } from './firebaseConfig';
+import { contactsDbCollectionName } from '../contact/contactDataModel';
+import { invoicesDbCollectionName } from '../invoice/invoiceDataModel';
 
-function saveInvoiceInDB(invoice) {
+function dbSaveInvoice(invoice) {
   if (!authUser) throw new Error('authUser is undefined cannot save in DB.');
-  if (!invoice) throw new Error('invoice is undefined cannot save in DB.');
+  if (!_isValidInvoice(invoice)) throw new Error('invoice is invalid cannot save in DB.');
 
-  const data = {
-    _createdByUid: authUser.uid,
-    _updatedAt: serverTimestamp(),
-    ...invoice,
-  };
+  const data = _addDbTrackingData(invoice);
 
-  db.collection('invoices')
-    .doc(invoice.id)
+  console.log(data);
+
+  db.collection(invoicesDbCollectionName)
+    .doc(invoice.invoiceId)
     .set(data)
     .then()
     .catch(err => console.error('Error saving invoice: ', err));
 }
 
-export { saveInvoiceInDB };
+function _isValidInvoice(invoice) {
+  return invoice;
+}
+
+function dbSaveContact(contact) {
+  if (!authUser) throw new Error('authUser is undefined cannot save in DB.');
+  if (!_isValidClient(contact)) throw new Error('invoice is invalid cannot save in DB.');
+
+  const data = _addDbTrackingData(contact);
+
+  db.collection(contactsDbCollectionName)
+    .doc(contact.contactId)
+    .set(data)
+    .then()
+    .catch(err => console.error('Error saving invoice: ', err));
+}
+
+function _isValidClient(client) {
+  return client;
+}
+
+function _addDbTrackingData(data) {
+  return {
+    _createdByUid: authUser.uid,
+    _updatedAt: serverTimestamp(),
+    ...data,
+  };
+}
+
+export { dbSaveInvoice, dbSaveContact };

@@ -1,5 +1,6 @@
 :root {
   --border-color: #ebebeb;
+  --main-blue: #1765cc;
 }
 
 body {
@@ -66,6 +67,26 @@ button {
   cursor: pointer;
 }
 
+input {
+  outline: none;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+input:hover {
+  border-color: #bdbdbd;
+}
+
+input:focus {
+  border-color: var(--main-blue);
+}
+
+.input-container {
+  margin: 15px;
+}
+
+
 a {
   text-decoration: none;
   color: inherit;
@@ -85,6 +106,10 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
 }
 
 .flex-space-between {

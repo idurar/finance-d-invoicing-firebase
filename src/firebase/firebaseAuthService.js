@@ -1,7 +1,7 @@
 "use strict";
 
 import { auth, authProviders } from "./firebaseConfig";
-import { onUserLoggedIn, onUserLoggedOut } from "../state/handleLoginStateChange";
+import { onUserLoggedIn, onUserLoggedOut } from "../handleLoginStateChange";
 
 let authUser;
 

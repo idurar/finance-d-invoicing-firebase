@@ -1,28 +1,23 @@
 'use strict';
 
-import { saveInvoiceInDB } from '../firebase/firebaseDbService';
-import { v4 as uuidv4 } from 'uuid';
-import { clientName } from './clientName';
+import { dbSaveInvoice } from '../firebase/firebaseDbService';
+import { invoiceDataModel } from './invoiceDataModel';
+import { contact } from '../contact/contact';
 
 export const invoice = {
-  id: null,
+  current: undefined,
 
   initializeNew() {
-    invoice.id = uuidv4();
-    console.log( invoice.id );
+    invoice.current = { ...invoiceDataModel };
+    invoice.current.contactId = contact.current.contactId;
+    console.log(invoice.current);
   },
 
   save() {
-    saveInvoiceInDB({
-      id: invoice.id,
-      name: clientName.get(),
-      number: '1',
-      date: '2021-01-18',
-    });
+    dbSaveInvoice(invoice.current);
   },
 
   registerEventListeners() {
-    clientName.registerEvents();
     document.getElementById('save-btn').onclick = invoice.save;
   },
 };
