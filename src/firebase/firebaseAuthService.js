@@ -1,11 +1,20 @@
 "use strict";
 
 import { auth, authProviders } from "./firebaseConfig";
-import { handleLoginStateChange } from "../state/handleLoginStateChange";
+import { onUserLoggedIn, onUserLoggedOut } from "../state/handleLoginStateChange";
+
+let authUser;
 
 function registerAuthStateListener() {
   //firebase authentication emits an event when the user login state updates
-  auth.onAuthStateChanged(handleLoginStateChange);
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      authUser = user;
+      onUserLoggedIn(authUser);
+    } else {
+      onUserLoggedOut();
+    }
+  });
 }
 
 function googleSignInPopup() {
@@ -37,4 +46,4 @@ function _logError(error) {
   console.error({ errorCode, errorMessage, email, credential });
 }
 
-export { registerAuthStateListener, googleSignInPopup, signOut };
+export { authUser, registerAuthStateListener, googleSignInPopup, signOut };

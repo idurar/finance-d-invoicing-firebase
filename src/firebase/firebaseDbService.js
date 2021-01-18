@@ -1,22 +1,23 @@
-"use strict";
+'use strict';
 
-//TODO
+import { authUser } from './firebaseAuthService';
+import { db, serverTimestamp } from './firebaseConfig';
 
-import { db } from "./initializeFirebaseServices";
+function saveInvoiceInDB(invoice) {
+  if (!authUser) throw new Error('authUser is undefined cannot save in DB.');
+  if (!invoice) throw new Error('invoice is undefined cannot save in DB.');
 
-const usersRef = db.collection("users");
+  const data = {
+    _createdByUid: authUser.uid,
+    _updatedAt: serverTimestamp(),
+    ...invoice,
+  };
 
-function createUserDB() {
-  usersRef
-    .add({
-      name: "Alex",
-    })
-    .then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function (error) {
-      console.error("Error adding document: ", error);
-    });
+  db.collection('invoices')
+    .doc(invoice.id)
+    .set(data)
+    .then()
+    .catch(err => console.error('Error saving invoice: ', err));
 }
 
-export { createUserDB };
+export { saveInvoiceInDB };
