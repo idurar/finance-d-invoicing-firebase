@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-import { googleSignInPopup, signOut } from "../firebase/firebaseAuthService";
-import { invoice } from "../invoice/invoice";
+import { googleSignInPopup, signOut } from '../firebase/firebaseAuthService';
+import { invoice } from '../invoice/invoice';
 
 //register UI clicks on sign-in and sign-out buttons
-document.getElementById("signInBtn").onclick = googleSignInPopup;
-document.getElementById("signOutBtn").onclick = signOut;
+document.getElementById('signInBtn').onclick = googleSignInPopup;
+document.getElementById('signOutBtn').onclick = signOut;
 
 function handleLoginStateChange(user) {
   if (user) {
@@ -16,35 +16,26 @@ function handleLoginStateChange(user) {
 }
 
 function onUserLoggedIn(user) {
-  console.log("is signed in");
-  hideSignInContext();
-  loadUserServices(user);
+  console.log('is signed in');
 
-  function hideSignInContext() {
-    document.getElementById("whenSignedIn").style.display = "";
-    document.getElementById("whenSignedOut").style.display = "none";
-    document.getElementById("signInBtn").style.display = "none";
-    document.getElementById("signOutBtn").style.display = "";
-  }
+  document.getElementById('signedInHeader').style.display = '';
+  document.getElementById('signedOutHeader').style.display = 'none';
+  document.getElementById('authUserEmail').textContent = user.email;
 
-  function loadUserServices(user) {
-    document.getElementById("authUserEmail").textContent = user.email;
+  document.getElementById('whenSignedIn').style.display = '';
+  document.getElementById('whenSignedOut').style.display = 'none';
 
-    invoice.registerEventListeners();
-    document.getElementById("save-btn").onclick = invoice.save;
-  }
+  invoice.registerEventListeners();
+  document.getElementById('save-btn').onclick = invoice.save;
 }
 
 function onUserLoggedOut() {
-  console.log("is signed out");
-  showSignInContext();
+  console.log('is signed out');
 
-  function showSignInContext() {
-    document.getElementById("whenSignedIn").style.display = "none";
-    document.getElementById("whenSignedOut").style.display = "";
-    document.getElementById("signInBtn").style.display = "";
-    document.getElementById("signOutBtn").style.display = "none";
-  }
+  document.getElementById('signedInHeader').style.display = 'none';
+  document.getElementById('signedOutHeader').style.display = '';
+  document.getElementById('whenSignedIn').style.display = 'none';
+  document.getElementById('whenSignedOut').style.display = '';
 }
 
 export { handleLoginStateChange };

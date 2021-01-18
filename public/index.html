@@ -8,23 +8,39 @@
   <title>Finance D - Facturation</title>
 </head>
 
-<body>
+<body class='no-select'>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <script type='module' src='/dist/index.js'></script>
 
-<header class='no-select'>
-  <div class='header-left fd-logo-container flex-row flex-center'>
+<header id='signedOutHeader' class='flex-row flex-center' style=''>
+  <a href='https://finance-d.com'
+     id='login-page-logo'
+     class='footer-logo-container flex-row flex-center'>
+    <img class='fd-logo' src='images/logo.png' alt=''
+         width='48' height='48' style='width: 40px;height: 40px;margin: 15px;'>
+    <span class='fd-logo-text text-no-wrap' style='font-size: 40px;font-weight: bold;font-variant: small-caps;'>
+      Finance D</span>
+  </a>
+</header>
+
+<header id='signedInHeader' style='display: none;'>
+  <a href='https://finance-d.com'
+     id='header-logo'
+     class='header-left fd-logo-container flex-row flex-center'>
     <img class='fd-logo' src='images/logo.png'
-         alt='' width='40' height='40'
-         style='width: 40px;height: 40px;margin: 15px;'>
+         alt='' width='32' height='32'
+         style='width: 32px;height: 32px;margin: 15px;'>
     <span class='fd-logo-text text-no-wrap'
-          style='font-size: 40px;font-weight: bold;font-variant: small-caps;'>
+          style='font-size: 28px;font-weight: bold;font-variant: small-caps;'>
       Finance D
     </span>
-  </div>
+  </a>
   <div class='header-center flex-row flex-center'>
     <div class='my-preferences'>
       <button id='my-preferences-btn'>Mes préférences</button>
+    </div>
+    <div class='help'>
+      <button id='help-btn'>Aide</button>
     </div>
     <div class='my-invoices'>
       <button id='my-invoices-btn'>Mes factures</button>
@@ -33,7 +49,7 @@
   <div class='header-right flex-row flex-center'>
     <div class='my-account flex-row flex-center'>
       <p>Connecté en tant que <span id='authUserEmail'></span></p>
-      <button id='signOutBtn' style='display: none;'>Se déconnecter</button>
+      <button id='signOutBtn'>Se déconnecter</button>
     </div>
   </div>
 </header>
@@ -41,9 +57,10 @@
 <main class='flex-col flex-center'>
   <div id='whenSignedOut' class='flex-col flex-center' style='display: none;'>
     <h1>Facturation Simplifiée</h1>
-    <p>Pour commencer, connectez-vous avec votre compte Google.</p>
-    <div id='signInBtn' class='googleSignInButton_ no-select'
-         style='display: none;height:50px;'>
+    <br>
+    <p>Pour utiliser notre application gratuitement, connectez-vous avec votre compte Google.</p>
+    <div id='signInBtn' class='googleSignInButton_'
+         style='height:50px;'>
       <div class='googleSignInButton_ContentWrapper'>
         <div class='googleSignInButton_Icon' style='padding:15px'>
           <div style='width:18px;height:18px;'>
@@ -104,8 +121,23 @@
 </main>
 
 
-<footer class='flex-col flex-center'>
-  <div>© <span id='copyright-year'></span> Finance D</div>
+<footer class='flex-row'>
+  <a href='https://finance-d.com'
+     id='footer-logo'
+     class='footer-logo-container flex-row flex-center'>
+    <img class='fd-logo' src='images/logo.png' alt=''
+         width='26' height='26' style='width: 26px;height: 26px;'>
+    <span class='fd-logo-text text-no-wrap' style='font-size: 20px;font-weight: bold;font-variant: small-caps;'>
+      Finance D</span>
+  </a>
+  <pre class='copyright flex-row flex-center'>Copyright © <span id='copyright-year'></span> Finance D. Tous droits réservés.</pre>
+  <a href='https://github.com/alex-drocks/finance-d-invoicing-firebase'>
+    <svg width='19' height='19' viewBox='0 0 14 14' aria-label='github'>
+      <path
+        d='M7 .175c-3.872 0-7 3.128-7 7 0 3.084 2.013 5.71 4.79 6.65.35.066.482-.153.482-.328v-1.181c-1.947.415-2.363-.941-2.363-.941-.328-.81-.787-1.028-.787-1.028-.634-.438.044-.416.044-.416.7.044 1.071.722 1.071.722.635 1.072 1.641.766 2.035.59.066-.459.24-.765.437-.94-1.553-.175-3.193-.787-3.193-3.456 0-.766.262-1.378.721-1.881-.065-.175-.306-.897.066-1.86 0 0 .59-.197 1.925.722a6.754 6.754 0 0 1 1.75-.24c.59 0 1.203.087 1.75.24 1.335-.897 1.925-.722 1.925-.722.372.963.131 1.685.066 1.86.46.48.722 1.115.722 1.88 0 2.691-1.641 3.282-3.194 3.457.24.219.481.634.481 1.29v1.926c0 .197.131.415.481.328C11.988 12.884 14 10.259 14 7.175c0-3.872-3.128-7-7-7z'
+        fill='currentColor' fill-rule='nonzero'></path>
+    </svg>
+  </a>
 </footer>
 
 </body>
