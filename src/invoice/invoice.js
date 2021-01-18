@@ -1,6 +1,6 @@
 'use strict';
 
-import { dbSaveInvoice } from '../firebase/firebaseDbService';
+import { dbDeleteInvoice, dbSaveInvoice } from '../firebase/firebaseDbService';
 import { invoiceDataModel } from './invoiceDataModel';
 import { contact } from '../contact/contact';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,10 +8,10 @@ import { v4 as uuidv4 } from 'uuid';
 export const invoice = {
   current: undefined,
 
-  initializeNew() {
+  init() {
     invoice.current = { ...invoiceDataModel };
     invoice.current.invoiceId = uuidv4();
-    invoice.current.contactId = contact.current.contactId;
+    invoice.current.contact.contactId = contact.current.contactId;
     console.log(invoice.current);
   },
 
@@ -19,7 +19,13 @@ export const invoice = {
     dbSaveInvoice(invoice.current);
   },
 
+  delete() {
+    dbDeleteInvoice(invoice.current.invoiceId);
+  },
+
   registerEventListeners() {
-    document.getElementById('save-btn').onclick = invoice.save;
+    document.getElementById('resetBtn').onclick = invoice.init;
+    document.getElementById('saveBtn').onclick = invoice.save;
+    document.getElementById('deleteBtn').onclick = invoice.delete;
   },
 };

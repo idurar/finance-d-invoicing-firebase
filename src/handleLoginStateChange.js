@@ -20,10 +20,10 @@ function onUserLoggedIn(user) {
   document.getElementById('whenSignedOut').style.display = 'none';
 
   //keep in this order
-  contact.initializeNew();
+  contact.init();
   contact.registerEventListeners();
 
-  invoice.initializeNew();
+  invoice.init();
   invoice.registerEventListeners();
 }
 

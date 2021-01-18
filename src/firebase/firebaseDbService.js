@@ -20,6 +20,16 @@ function dbSaveInvoice(invoice) {
     .catch(err => console.error('Error saving invoice: ', err));
 }
 
+function dbDeleteInvoice(invoiceId) {
+  if (!invoiceId) throw new Error('invoiceId is undefined cannot delete in DB.');
+
+  db.collection(invoicesDbCollectionName)
+    .doc(invoiceId)
+    .delete()
+    .then()
+    .catch(err => console.error('Error saving invoice: ', err));
+}
+
 function _isValidInvoice(invoice) {
   return invoice;
 }
@@ -49,4 +59,4 @@ function _addDbTrackingData(data) {
   };
 }
 
-export { dbSaveInvoice, dbSaveContact };
+export { dbSaveInvoice, dbDeleteInvoice, dbSaveContact };

@@ -4,7 +4,10 @@ const invoicesDbCollectionName = 'invoices';
 
 const invoiceDataModel = {
   invoiceId: '',
-  contactId: '',
+  contact: {
+    contactId: '',
+    name: '',
+  },
   number: '',
   date: {
     issued: '',
