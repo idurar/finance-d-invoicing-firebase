@@ -1,11 +1,9 @@
 'use strict';
 
-import { v4 as uuidv4 } from 'uuid';
-
 const contactsDbCollectionName = 'contacts';
 
 const contactDataModel = {
-  contactId: uuidv4(),
+  contactId: '',
   name: '',
   enterprise: '',
   role: '',

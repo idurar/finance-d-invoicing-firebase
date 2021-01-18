@@ -1,11 +1,9 @@
 'use strict';
 
-import { v4 as uuidv4 } from 'uuid';
-
 const invoicesDbCollectionName = 'invoices';
 
 const invoiceDataModel = {
-  invoiceId: uuidv4(),
+  invoiceId: '',
   contactId: '',
   number: '',
   date: {
