@@ -11,8 +11,12 @@ export const contact = {
   init() {
     contact.current = { ...contactDataModel };
     contact.current.contactId = uuidv4();
-    contactNameInput.set("");
+    contactNameInput.set('');
     console.log(contact.current);
+  },
+
+  getName() {
+    return contact.current.name;
   },
 
   save() {
@@ -20,6 +24,6 @@ export const contact = {
   },
 
   registerEventListeners() {
-    contactNameInput.registerEvents();
+    contactNameInput.registerEventListeners();
   },
 };
