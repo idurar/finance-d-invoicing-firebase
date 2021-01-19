@@ -12,7 +12,7 @@ export const invoice = {
   current: undefined,
 
   init() {
-    invoice.current = { ...invoiceDataModel };
+    invoice.current = invoiceDataModel();
 
     Object.assign(invoice.current, {
       invoiceId: uuidv4(),
@@ -21,7 +21,6 @@ export const invoice = {
         name: contact.current.name,
       },
     });
-    console.log(invoice.current);
 
     // update UI with current data
     contactNameInput.set(invoice.current.contact.name);

@@ -2,45 +2,49 @@
 
 const invoicesDbCollectionName = 'invoices';
 
-const invoiceDataModel = {
-  invoiceId: '',
-  contact: {
-    contactId: '',
-    name: '',
-  },
-  number: '',
-  date: {
-    issued: '',
-    due: '',
-  },
-  transactions: [
-    {
-      product: '',
-      quantity: '',
-      price: '',
-      taxCode: '',
-      amount: '',
+//By returning an object from a function call,
+//it ensures that the model is protected from modifications.
+function invoiceDataModel() {
+  return {
+    invoiceId: '',
+    contact: {
+      contactId: '',
+      name: '',
     },
-  ],
-  sum: {
-    subTotal: '',
-    taxes: [
+    number: '',
+    date: {
+      issued: '',
+      due: '',
+    },
+    transactions: [
       {
-        label: '',
-        value: '',
+        product: '',
+        quantity: '',
+        price: '',
+        taxCode: '',
+        amount: '',
       },
     ],
-    total: '',
-  },
-  paiements: [
-    {
-      method: '',
-      account: '',
-      date: '',
-      ref: '',
-      amount: '',
+    sum: {
+      subTotal: '',
+      taxes: [
+        {
+          label: '',
+          value: '',
+        },
+      ],
+      total: '',
     },
-  ],
+    paiements: [
+      {
+        method: '',
+        account: '',
+        date: '',
+        ref: '',
+        amount: '',
+      },
+    ],
+  };
 };
 
 export { invoiceDataModel, invoicesDbCollectionName };
