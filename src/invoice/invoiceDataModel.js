@@ -1,16 +1,16 @@
 'use strict';
 
+import { contactDataModel } from '../contact/contactDataModel';
+import { v4 as uuidv4 } from 'uuid';
+
 const invoicesDbCollectionName = 'invoices';
 
 //By returning an object from a function call,
 //it ensures that the model is protected from modifications.
 function invoiceDataModel() {
   return {
-    invoiceId: '',
-    contact: {
-      contactId: '',
-      name: '',
-    },
+    invoiceId: uuidv4(),
+    contact: contactDataModel(),
     number: '',
     date: {
       issued: '',

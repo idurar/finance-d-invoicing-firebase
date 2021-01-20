@@ -1,7 +1,7 @@
 'use strict';
 
-import { dbDeleteInvoice, dbSaveInvoice } from '../firebase/firebaseDbService';
-import { v4 as uuidv4 } from 'uuid';
+import { dbDeleteInvoice, dbGetInvoices, dbSaveInvoice } from '../firebase/firebaseDbService';
+// import { v4 as uuidv4 } from 'uuid';
 import { invoiceDataModel } from './invoiceDataModel';
 import { invoiceNumberInput } from './invoiceNumberInput';
 import { contact } from '../contact/contact';
@@ -13,14 +13,7 @@ export const invoice = {
 
   init() {
     invoice.current = invoiceDataModel();
-
-    Object.assign(invoice.current, {
-      invoiceId: uuidv4(),
-      contact: {
-        contactId: contact.current.contactId,
-        name: contact.current.name,
-      },
-    });
+    console.log(invoice.current);
 
     // update UI with current data
     contactNameInput.set(invoice.current.contact.name);
@@ -31,7 +24,12 @@ export const invoice = {
   save() {
     const data = invoice.current;
     data.contact.name = contact.getName();
-    dbSaveInvoice(invoice.current);
+    if (data.contact.name && data.number && data.date.issued) {
+      dbSaveInvoice(invoice.current);
+      invoice.init();
+    } else {
+      alert('invalid invoice data cannot save');
+    }
   },
 
   delete() {

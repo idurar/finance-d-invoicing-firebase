@@ -20,6 +20,20 @@ function dbSaveInvoice(invoice) {
     .catch(err => console.error('Error saving invoice: ', err));
 }
 
+async function dbGetInvoices() {
+  if (!authUser) throw new Error('authUser is undefined cannot read in DB.');
+
+
+
+  const querySnapshot = await db.collection(invoicesDbCollectionName)
+    .where('_createdByUid', '==', authUser.uid)
+    .limit(3)
+    .get()
+    .catch(err => console.error('Error getting invoices: ', err));
+
+  return querySnapshot.docs.map(doc => doc.data());
+}
+
 function dbDeleteInvoice(invoiceId) {
   if (!invoiceId) throw new Error('invoiceId is undefined cannot delete in DB.');
 
@@ -27,7 +41,7 @@ function dbDeleteInvoice(invoiceId) {
     .doc(invoiceId)
     .delete()
     .then()
-    .catch(err => console.error('Error saving invoice: ', err));
+    .catch(err => console.error('Error deleting invoice: ', err));
 }
 
 function _isValidInvoice(invoice) {
@@ -59,4 +73,4 @@ function _addDbTrackingData(data) {
   };
 }
 
-export { dbSaveInvoice, dbDeleteInvoice, dbSaveContact };
+export { dbSaveInvoice, dbGetInvoices, dbDeleteInvoice, dbSaveContact };

@@ -1,13 +1,16 @@
 'use strict';
 
+import { contact } from './contact';
+import { v4 as uuidv4 } from 'uuid';
+
 const contactsDbCollectionName = 'contacts';
 
 //By returning an object from a function call,
 //it ensures that the model is protected from modifications.
 function contactDataModel() {
   return {
-    contactId: '',
-    name: '',
+    contactId: contact.current ? contact.current.contactId : uuidv4(),
+    name: contact.current ? contact.current.name : "",
     enterprise: '',
     role: '',
     email: '',
